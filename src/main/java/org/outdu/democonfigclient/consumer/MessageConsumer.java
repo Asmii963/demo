@@ -12,29 +12,13 @@ import java.util.List;
 public class MessageConsumer {
 
     @Value("${spring.kafka.template.default-topic}")
-    private String topic ;
-
-    public String getTopic() {
-        return topic;
-    }
-
-    public void setTopic(String topic) {
-        this.topic = topic;
-    }
-
-    public String getGroupId() {
-        return groupId;
-    }
-
-    public void setGroupId(String groupId) {
-        this.groupId = groupId;
-    }
+    String topic ;
 
     @Value("spring.kafka.consumer.group-id")
-    private String groupId;
+    String groupId;
 
-    @KafkaListener(topics = "#{topic}", groupId = "alert-mgmt-group")
-    public void listen(List<AlertEntity> message) {
+    @KafkaListener(topics = "org.outdu.alertmanagement.alerts", groupId = "alert-management-group")
+    public void listen(AlertEntity message) {
         System.out.println("Consumer Received message: " + message);
     }
 

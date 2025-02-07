@@ -20,7 +20,7 @@ import java.util.Map;
 public class KafkaConsumerConfig {
 
     @Bean
-    public ConsumerFactory<? super String, ? super List<AlertEntity>> consumerFactory() {
+    public ConsumerFactory<? super String, ? super AlertEntity> consumerFactory() {
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "192.168.1.10:9092");
         configProps.put(ConsumerConfig.GROUP_ID_CONFIG, "alert-management-group");
@@ -30,8 +30,8 @@ public class KafkaConsumerConfig {
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, List<AlertEntity>> kafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String,List<AlertEntity>> factory = new ConcurrentKafkaListenerContainerFactory<>();
+    public ConcurrentKafkaListenerContainerFactory<String, AlertEntity> kafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String,AlertEntity> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
         return factory;
     }
